@@ -990,8 +990,15 @@ function initHistory() {
   const prTpl = $("#pr-item-template");
   const msg = $("#historyMsg");
 
-  const toISO = (d) => d.toISOString().slice(0, 10);
-  const startOfWeek = (d) => { const c = new Date(d.getFullYear(), d.getMonth(), d.getDate()); const wd = (c.getDay() + 6) % 7; c.setDate(c.getDate() - wd); return c; };
+  // en-CA = "YYYY-MM-DD" in your *local* timezone
+  const toISO = (d) => d.toLocaleDateString("en-CA");
+
+
+
+
+  const startOfWeek = (d) => { const c = new Date(d.getFullYear(), d.getMonth(), d.getDate()); 
+
+  const wd = (c.getDay() + 6) % 7; c.setDate(c.getDate() - wd); return c; };
   const addDays = (d, n) => { const c = new Date(d); c.setDate(c.getDate() + n); return c; };
 
   weekStart.value = toISO(startOfWeek(new Date()));
