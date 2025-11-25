@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Schedule – Atlas</title>
+  <meta name="theme-color" content="#2b8cff" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="functions.js" defer></script>
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="programs.html" class="brand">
+      <img src="icons/atlas-logo.png" alt="Atlas" width="32" height="32" />
+      <span class="brand-title">ATLAS</span>
+    </a>
+    <a href="settings.html" class="icon-btn" aria-label="Settings" data-page-link="settings">
+      <svg class="icon">
+        <use href="icons/icons.svg#settings" />
+      </svg>
+    </a>
+  </header>
+
+  <main class="app-main" id="scheduleRoot">
+  <section class="card">
+    <header class="flex-row space-between align-center mb-05">
+      <div>
+        <h1 class="h3">Weekly schedule</h1>
+        <p id="programInfo" class="subtle"></p>
+      </div>
+      <span id="modeBadge" class="badge badge-warn hidden">EDIT MODE</span>
+    </header>
+
+    <p id="restCounter" class="subtle mb-05"></p>
+
+    <div id="weekContainer" class="week-container"></div>
+
+    <div class="btn-row mt-075">
+      <button id="editProgramBtn" class="btn">Edit schedule</button>
+      <button id="saveProgramBtn" class="btn hidden">Save changes</button>
+      <button id="cancelEditBtn" class="btn ghost hidden">Cancel</button>
+    </div>
+
+    <div class="btn-row mt-05">
+      <button id="resetDefaultBtn" class="btn ghost">Reset to default</button>
+      <button id="resetProgressBtn" class="btn ghost">Reset progress</button>
+    </div>
+  </section>
+</main>
+
+
+  <footer class="app-footer">
+    <nav class="tabbar" aria-label="Primary">
+      <a href="programs.html" class="tab" data-page-link="programs"><svg class="icon">
+          <use href="icons/icons.svg#programs" />
+        </svg><span>Program</span></a>
+      <a href="schedule.html" class="tab" data-page-link="schedule"><svg class="icon">
+          <use href="icons/icons.svg#schedule" />
+        </svg><span>Schedule</span></a>
+      <a href="log.html" class="tab" data-page-link="log"><svg class="icon">
+          <use href="icons/icons.svg#log" />
+        </svg><span>Log</span></a>
+      <a href="history.html" class="tab" data-page-link="history"><svg class="icon">
+          <use href="icons/icons.svg#history" />
+        </svg><span>History</span></a>
+      <a href="tracker.html" class="tab" data-page-link="tracker"><svg class="icon">
+          <use href="icons/icons.svg#tracker" />
+        </svg><span>Tracker</span></a>
+      <a href="profile.html" class="tab" data-page-link="profile"><svg class="icon">
+          <use href="icons/icons.svg#profile" />
+        </svg><span>Profile</span></a>
+    </nav>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>History & Insights – Atlas</title>
+  <meta name="theme-color" content="#2b8cff" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="functions.js" defer></script>
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="programs.html" class="brand">
+      <img src="icons/atlas-logo.png" alt="Atlas" width="32" height="32" />
+      <span class="brand-title">ATLAS</span>
+    </a>
+    <a href="settings.html" class="icon-btn" aria-label="Settings" data-page-link="settings">
+      <svg class="icon">
+        <use href="icons/icons.svg#settings" />
+      </svg>
+    </a>
+  </header>
+
+  <main class="main-container page-narrow" id="historyRoot">
+    <h1>History & Insights</h1>
+
+    <div class="card">
+      <div class="history-controls-grid">
+        <label class="input">
+          <span class="input-label">Week starting</span>
+          <input type="date" id="weekStart" />
+        </label>
+        <div class="history-controls-row">
+          <button id="prevWeekBtn" class="btn secondary">← Prev </button>
+          <button id="nextWeekBtn" class="btn secondary">Next →</button>
+        </div>
+      </div>
+      <div class="history-controls-actions">
+        <button id="exportWeekBtn" class="btn">Export CSV (Week)</button>
+        <button id="exportAllBtn" class="btn ghost">Export CSV (All)</button>
+      </div>
+    </div>
+
+    <section class="insights-grid mt-08">
+      <div class="card">
+        <div class="subtle">Total Sessions</div>
+        <div class="kpi" id="kpiSessions">0</div>
+      </div>
+      <div class="card">
+        <div class="subtle">Total Volume<span class="unit-weight"></span></div>
+        <div class="kpi" id="kpiVolume">0</div>
+      </div>
+      <div class="card">
+        <div class="subtle">Avg Sets / Session</div>
+        <div class="kpi" id="kpiAvgSets">0</div>
+      </div>
+    </section>
+
+    <section class="mt-08">
+      <h2 class="h4">Personal Records</h2>
+      <div id="prList" class="card"></div>
+    </section>
+
+    <section class="mt-08">
+      <h2 class="h4">This Week’s Sessions</h2>
+      <div class="table-wrap">
+        <table class="table-compact" aria-label="Weekly sessions">
+          <thead>
+            <tr>
+              <th class="w-9ch">Date</th>
+              <th>Plan</th>
+              <th class="w-10ch">Volume</th>
+            </tr>
+          </thead>
+          <tbody id="weekTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p id="historyMsg" class="feedback" aria-live="polite"></p>
+  </main>
+
+  <footer class="app-footer">
+    <nav class="tabbar" aria-label="Primary">
+      <a href="programs.html" class="tab" data-page-link="programs"><svg class="icon">
+          <use href="icons/icons.svg#programs" />
+        </svg><span>Program</span></a>
+      <a href="schedule.html" class="tab" data-page-link="schedule"><svg class="icon">
+          <use href="icons/icons.svg#schedule" />
+        </svg><span>Schedule</span></a>
+      <a href="log.html" class="tab" data-page-link="log"><svg class="icon">
+          <use href="icons/icons.svg#log" />
+        </svg><span>Log</span></a>
+      <a href="history.html" class="tab" data-page-link="history"><svg class="icon">
+          <use href="icons/icons.svg#history" />
+        </svg><span>History</span></a>
+      <a href="tracker.html" class="tab" data-page-link="tracker"><svg class="icon">
+          <use href="icons/icons.svg#tracker" />
+        </svg><span>Tracker</span></a>
+      <a href="profile.html" class="tab" data-page-link="profile"><svg class="icon">
+          <use href="icons/icons.svg#profile" />
+        </svg><span>Profile</span></a>
+    </nav>
+  </footer>
+
+  <!-- Templates -->
+  <template id="week-row-template">
+    <tr>
+      <td class="sess-date r-center">—</td>
+      <td class="sess-plan r-center">—</td>
+      <td class="sess-vol r-center">0</td>
+    </tr>
+  </template>
+
+  <template id="pr-item-template">
+    <div class="pr-item">
+      <strong class="pr-exercise">Exercise</strong>
+      <span class="pr-metric">—</span>
+    </div>
+  </template>
+</body>
+
+</html>

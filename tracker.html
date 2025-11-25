@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Tracker – Atlas</title>
+  <meta name="theme-color" content="#2b8cff" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="functions.js" defer></script>
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="programs.html" class="brand">
+      <img src="icons/atlas-logo.png" alt="Atlas" width="32" height="32" />
+      <span class="brand-title">ATLAS</span>
+    </a>
+    <a href="settings.html" class="icon-btn" aria-label="Settings" data-page-link="settings">
+      <svg class="icon">
+        <use href="icons/icons.svg#settings" />
+      </svg>
+    </a>
+  </header>
+
+  <main class="main-container page-narrow" id="trackerRoot">
+    <h1>Tracker</h1>
+
+    <!-- Goal + Rings -->
+    <section class="card">
+      <div class="tracker-top-grid">
+        <div class="input">
+          <span class="input-label">Date</span>
+          <input type="date" id="trkDate" />
+        </div>
+        <div id="goalKcal"></div>
+      </div>
+
+      <div class="rings-wrap">
+        <div class="ring ring-lg" id="ringCal">
+          <div class="ring-center emoji-cal">🔥</div>
+        </div>
+        <div class="ring-subtext">Total: <strong id="calTotal">0</strong> / <span id="calGoalInline">0</span> kcal</div>
+
+        <div class="macro-rings">
+          <div class="macro">
+            <div class="ring ring-sm" id="ringP">
+              <div class="ring-center emoji-macro">🥩</div>
+            </div>
+            <div class="macro-label"><strong id="pNow">0</strong>/<span id="pGoal">0</span> g</div>
+          </div>
+          <div class="macro">
+            <div class="ring ring-sm" id="ringF">
+              <div class="ring-center emoji-macro"">🥑</div>
+            </div>
+            <div class="macro-label"><strong id="fNow">0</strong>/<span id="fGoal">0</span> g</div>
+          </div>
+          <div class="macro">
+            <div class="ring ring-sm" id="ringC">
+              <div class="ring-center emoji-macro"">🍞</div>
+            </div>
+            <div class="macro-label"><strong id="cNow">0</strong>/<span id="cGoal">0</span> g</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add food -->
+    <section class="card mt-075">
+      <h2 class="h4">Add Food</h2>
+      <div class="food-grid-2">
+        <label class="input">
+          <span class="input-label">Food</span>
+          <input type="text" id="foodInput" placeholder="Type a food…" list="foodDatalist" autocomplete="off" />
+          <datalist id="foodDatalist"></datalist>
+        </label>
+        <label class="input">
+          <span class="input-label">Amount (g)</span>
+          <input type="number" id="gramsInput" min="0" step="5" placeholder="100" />
+        </label>
+      </div>
+      <p class="subtle" id="foodHint">No food selected</p>
+      <div class="food-actions-row mt-05">
+        <button id="addCaloriesBtn" class="btn">Add</button>
+        <button id="undoCaloriesBtn" class="btn ghost">Undo Last</button>
+      </div>
+    </section>
+
+    <!-- Today list -->
+    <section class="card mt-075">
+      <h2 class="h4">Today</h2>
+      <div class="table-wrap">
+        <table class="table-compact">
+          <thead>
+            <tr>
+              <th>Food</th>
+              <th>Grams</th>
+              <th>Kcal</th>
+              <th>Protein</th>
+              <th>Fat</th>
+              <th>Carbs</th>
+            </tr>
+          </thead>
+          <tbody id="foodList"></tbody>
+          <tfoot>
+            <tr>
+              <th>Total</th>
+              <th></th>
+              <th id="kcalTotalCell">0</th>
+              <th id="pTotalCell">0</th>
+              <th id="fTotalCell">0</th>
+              <th id="cTotalCell">0</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <nav class="tabbar" aria-label="Primary">
+      <a href="programs.html" class="tab" data-page-link="programs"><svg class="icon">
+          <use href="icons/icons.svg#programs" />
+        </svg><span>Program</span></a>
+      <a href="schedule.html" class="tab" data-page-link="schedule"><svg class="icon">
+          <use href="icons/icons.svg#schedule" />
+        </svg><span>Schedule</span></a>
+      <a href="log.html" class="tab" data-page-link="log"><svg class="icon">
+          <use href="icons/icons.svg#log" />
+        </svg><span>Log</span></a>
+      <a href="history.html" class="tab" data-page-link="history"><svg class="icon">
+          <use href="icons/icons.svg#history" />
+        </svg><span>History</span></a>
+      <a href="tracker.html" class="tab" data-page-link="tracker"><svg class="icon">
+          <use href="icons/icons.svg#tracker" />
+        </svg><span>Tracker</span></a>
+      <a href="profile.html" class="tab" data-page-link="profile"><svg class="icon">
+          <use href="icons/icons.svg#profile" />
+        </svg><span>Profile</span></a>
+    </nav>
+  </footer>
+
+  <!-- Row template -->
+  <template id="food-row-template">
+    <tr>
+      <td class="r-name r-center">—</td>
+      <td class="r-g r-center">0</td>
+      <td class="r-k r-center">0</td>
+      <td class="r-p r-center">0</td>
+      <td class="r-f r-center">0</td>
+      <td class="r-c r-center">0</td>
+      <td class="r-del"></td>
+    </tr>
+    
+  </template>
+</body>
+
+</html>

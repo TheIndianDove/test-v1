@@ -1,0 +1,1187 @@
+/* =======================================================================
+   ATLAS — Mobile-first PWA UI (True Dark + Light parity)
+   ======================================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+:root {
+  color-scheme: dark light;
+
+  /* Dark (True Black) */
+  --bg: #000000;
+  --surface: #0a0a0a;
+  --card: #0f0f0f;
+  --text: #e7ebf0;
+  --muted: #98a2ad;
+  --border: rgba(255, 255, 255, .10);
+
+  --primary: #2b8cff;
+  /* blue accent */
+  --primary-weak: rgba(43, 140, 255, .18);
+  --success: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+
+  --radius: 14px;
+  --radius-sm: 10px;
+  --tap: 44px;
+  --shadow: 0 12px 32px rgba(0, 0, 0, .55);
+
+  --footer-h: 64px;
+  /* synced by JS on load */
+}
+
+html[data-theme="light"] {
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --text: #0e1116;
+  --muted: #5c6570;
+  --border: rgba(0, 0, 0, .10);
+  --shadow: 0 12px 30px rgba(0, 0, 0, .20);
+  --primary-weak: rgba(43, 140, 255, .15);
+}
+
+body {
+  font: 400 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom));
+}
+
+h1 {
+  font-size: 1.35rem;
+  margin: .35rem 0 .2rem;
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+
+h2,
+.h2 {
+  font-size: 1.15rem;
+  margin: .65rem 0 .35rem;
+  font-weight: 700;
+}
+
+.h4 {
+  font-size: 1.02rem;
+  margin: .35rem 0;
+  font-weight: 700;
+}
+
+p {
+  margin: .4rem 0;
+}
+
+.subtle {
+  color: var(--muted);
+}
+
+.feedback {
+  color: var(--muted);
+  margin-top: .35rem;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.main-container {
+  padding: .75rem .9rem;
+}
+
+.page-narrow {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Header */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  padding: .7rem .9rem;
+  background: var(--bg);
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-top: max(.7rem, env(safe-area-inset-top));
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand img {
+  display: block;
+  border-radius: 10px;
+}
+
+.brand-title {
+  font-weight: 900;
+  letter-spacing: .06em;
+  font-size: 1.05rem;
+}
+
+.icon-btn {
+  width: var(--tap);
+  height: var(--tap);
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: inherit;
+}
+
+/* Normalize all sprite icons */
+.icon {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+}
+
+/* header cog */
+.icon-btn .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* schedule drag handle */
+.drag-grab .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* footer tabs */
+.tab .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+
+
+/* Footer tabs */
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 40;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding-bottom: max(.35rem, env(safe-area-inset-bottom));
+  justify-self: center;
+}
+
+.tabbar {
+  display: flex;
+  gap: .35rem;
+  padding: .35rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabbar::-webkit-scrollbar {
+  display: none;
+  height: 0;
+}
+
+.tab {
+  flex: 0 0 auto;
+  padding: .45rem .4rem;
+  border-radius: 12px;
+  color: #cfd6de;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+}
+
+.tab[aria-current="page"],
+.tab.active {
+  background: var(--primary-weak);
+  color: #fff;
+}
+
+/* Cards, inputs, buttons */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .75rem .9rem;
+  box-shadow: var(--shadow);
+}
+
+.input {
+  display: grid;
+  gap: .25rem;
+}
+
+.input-label {
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .6rem .65rem;
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, .12);
+}
+
+.btn {
+  height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 .9rem;
+  gap: .5rem;
+  border-radius: 10px;
+  cursor: pointer;
+
+  /* Makes border clearer and makes it align with ghost buttons */
+  border: 2px solid rgb(63, 123, 236);
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  white-space: normal;
+  line-height: 1.2;
+  text-align: center;
+  /* allow multi-line */
+}
+
+.btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 2px dashed var(--border);
+}
+
+.btn.danger {
+  border-color: var(--danger);
+  background: var(--danger);
+}
+
+/* Tables */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-compact {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table-compact th,
+.table-compact td {
+  padding: .45rem .5rem;
+  border-bottom: 1px solid var(--border);
+  word-break: break-word;
+}
+
+.table-compact thead th {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .12rem .55rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+}
+
+/* Programs carousel */
+.carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel .track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: .75rem;
+}
+
+.program-card {
+  scroll-snap-align: start;
+}
+
+.dots {
+  display: flex;
+  gap: .4rem;
+  justify-content: center;
+  margin-top: .5rem;
+}
+
+.dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--border);
+}
+
+.dots button.active {
+  background: var(--primary);
+}
+
+/* Programs layout refinements */
+.program-card {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  /* feel “full” without cramming top */
+  
+  height: 57.5vh;
+}
+
+.program-card .btn {
+  align-self: center;
+}
+
+/* center "Select Program" */
+#programsRoot {
+  padding-top: .6rem;
+}
+
+/* small top breathing room */
+
+/* Schedule — Day cards */
+#weekContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .6rem;
+}
+
+.day-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: .6rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius);
+  padding: .55rem .6rem;
+  min-height: 64px;
+  transition: transform .15s ease;
+}
+
+.day-card.rest {
+  opacity: .95;
+  border-left-color: var(--muted);
+}
+
+.day-card.completed {
+  box-shadow: inset 0 0 0 2px rgba(34, 197, 94, .35);
+}
+
+.day-card.dragging {
+  z-index: 5;
+  transform: scale(.98);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, .45);
+}
+
+.drag-hint {
+  color: var(--muted);
+}
+
+.drag-grab {
+  width: var(--tap);
+  height: var(--tap);
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+  touch-action: none;
+  cursor: grab;
+}
+
+.drag-grab:active {
+  cursor: grabbing;
+}
+
+.day-name {
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.slot-label {
+  font-weight: 800;
+}
+
+.type-text {
+  grid-column: 1 / -1;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.badge-rest,
+.badge-complete {
+  display: none;
+}
+
+.day-card.rest .badge-rest {
+  display: inline-flex;
+}
+
+.day-card.completed .badge-complete {
+  display: inline-flex;
+}
+
+/* Pickup animation when a day is grabbed */
+@keyframes pickUp {
+  from {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  to {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .45);
+  }
+}
+
+.day-card.dragging {
+  animation: pickUp .14s ease-out forwards;
+  outline: 2px solid var(--primary);
+  outline-offset: 0;
+}
+
+/* Log */
+.exercise-card {
+  margin: .6rem 0;
+}
+
+.set-row input {
+  width: 100%;
+}
+
+/* History KPIs */
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+}
+
+.kpi {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-top: .25rem;
+}
+
+/* Snackbar (bottom sheet) */
+:root {
+  --snack-bg-dark: #0a0a0a;
+  --snack-bg-light: #ffffff;
+  --snack-border-dark: rgba(255, 255, 255, .10);
+  --snack-border-light: rgba(0, 0, 0, .10);
+  --snack-shadow-dark: 0 10px 30px rgba(0, 0, 0, .55);
+  --snack-shadow-light: 0 10px 30px rgba(0, 0, 0, .20);
+}
+
+.snackbar-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--footer-h) + 8px + env(safe-area-inset-bottom));
+  display: grid;
+  place-items: center;
+  padding: 0 .75rem;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.snackbar-stack {
+  display: grid;
+  gap: .5rem;
+  width: min(720px, 100%);
+}
+
+.snackbar {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: .75rem;
+  padding: .75rem .9rem;
+  border-radius: 14px;
+  color: #e6e8ee;
+  background: var(--snack-bg-dark);
+  border: 1px solid var(--snack-border-dark);
+  box-shadow: var(--snack-shadow-dark);
+}
+
+html[data-theme="light"] .snackbar {
+  background: var(--snack-bg-light);
+  border-color: var(--snack-border-light);
+  box-shadow: var(--snack-shadow-light);
+  color: #0e1116;
+}
+
+.snackbar--ok {
+  border-color: rgba(34, 197, 94, .35);
+}
+
+.snackbar--warn {
+  border-color: rgba(245, 158, 11, .35);
+}
+
+.snackbar--error {
+  border-color: rgba(239, 68, 68, .35);
+}
+
+.snackbar__msg {
+  font-size: .95rem;
+  line-height: 1.35;
+  min-height: 22px;
+}
+
+.snackbar__actions {
+  display: inline-flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.snackbar__btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  font-weight: 800;
+  padding: .35rem .55rem;
+  border-radius: 10px;
+}
+
+.snackbar__btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+.snackbar[data-enter] {
+  transform: translateY(16px);
+  opacity: 0;
+}
+
+.snackbar[data-enter].is-in {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+  .snackbar[data-enter],
+  .snackbar[data-enter].is-in {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+/* --- Footer: ensure last tabs not clipped & fit tighter on small phones --- */
+.tabbar {
+  padding-inline: .35rem;
+  padding-right: calc(.35rem + env(safe-area-inset-right));
+}
+
+/* --- Programs: give more breathing room below the stars text --- */
+#programsRoot .subtle+.carousel {
+  margin-top: .3rem;
+}
+
+/* --- Log: make header controls stack on narrow screens and keep buttons inside --- */
+#logRoot #planSelect {
+  min-width: var(--tap);
+  text-indent: -9999px;
+  /* hide the text value */
+  direction: ltr;
+}
+
+#logRoot #planSelect option {
+  text-indent: 0;
+}
+
+/* options remain normal in the menu */
+
+/* Prevent long button text from wrapping awkwardly on tiny screens */
+#historyRoot .btn {
+  font-size: .95rem;
+}
+
+#historyRoot .btn.ghost {
+  font-weight: 700;
+}
+
+/* Tracker table: keep compact */
+#trackerRoot table td,
+#trackerRoot table th {
+  padding: .4rem .45rem;
+}
+
+/* Make the Remove button not stretch the row */
+/* Good to add after we have moved the button, so it is outside the actual table, otherwise we get a scrollbar */
+
+/* #trackerRoot .r-del{
+  padding: .25rem .55rem;
+  height: auto;
+  line-height: 1.1;
+  white-space: nowrap;
+} */
+
+
+
+/* === Page-level helpers introduced from HTML refactors === */
+
+/* History: header controls */
+.history-controls-grid {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: .75rem;
+  align-items: end;
+}
+
+.history-controls-row {
+  display: flex;
+  gap: .5rem;
+}
+
+.history-controls-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
+  gap: 1rem;
+}
+
+/* Exercise Log */
+.log-controls-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: .75rem;
+  align-items: end;
+}
+
+.log-controls-actions {
+  display: flex;
+  gap: .5rem;
+  justify-content: flex-end;
+}
+
+.exercise-head-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: .7rem;
+  align-items: end;
+}
+
+.exercise-head-actions {
+  display: flex;
+  gap: .5rem;
+  justify-content: flex-end;
+}
+
+.log-actions-row {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Profile */
+.profile-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+}
+
+/* Programs */
+.mb-06 {
+  margin-bottom: .6rem;
+}
+
+/* Schedule */
+.schedule-controls-row {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Settings */
+.settings-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: .75rem;
+}
+
+.settings-actions-row {
+  display: flex;
+  gap: .5rem;
+}
+
+.settings-data-actions {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.hidden-input {
+  display: none;
+}
+
+/* Tracker */
+.tracker-top-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: .5rem;
+  align-items: end;
+}
+
+.food-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+}
+
+.food-actions-row {
+  display: flex;
+  gap: .5rem;
+}
+
+/* === Utilities (consolidated) === */
+.mt-05 {
+  margin-top: 0.5rem;
+}
+
+.mt-06 {
+  margin-top: 0.6rem;
+}
+
+.mt-075 {
+  margin-top: 0.75rem;
+}
+
+.mt-08 {
+  margin-top: 0.8rem;
+}
+
+.my-06 {
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.mb-10 {
+  margin-bottom: 1rem;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.w-6ch {
+  width: 6ch;
+}
+
+.w-9ch {
+  width: 9ch;
+}
+
+.w-10ch {
+  width: 10ch;
+}
+
+.w-30p {
+  width: 30%;
+}
+
+.w-40p {
+  width: 40%;
+}
+
+.w-6ch, .w-30p, .w-40p{
+  font-size: 0.8rem;
+}
+
+/* === Responsive tweaks === */
+
+/* Small screens */
+@media (max-width: 420px) {
+  #historyRoot .card>div {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: .6rem !important;
+  }
+
+  #historyRoot .card>div>div {
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+  }
+
+  #historyRoot .btn {
+    width: 100%;
+  }
+
+  /* full-width buttons so text never clips */
+  .tab {
+    min-width: 56px;
+    gap: .15rem;
+  }
+
+  .tab span {
+    font-size: .75rem;
+  }
+}
+
+@media (max-width: 430px) {
+  #logRoot .card>div {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: .6rem !important;
+  }
+
+  #logRoot .row-actions,
+  #logRoot .card>div>div {
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+  }
+
+  #logRoot .btn {
+    width: 100%;
+  }
+}
+
+/* Very small phones */
+@media (max-width:360px) {
+  .day-card {
+    grid-template-columns: auto 1fr;
+  }
+
+  .badge {
+    display: none;
+  }
+
+  .app-header {
+    padding-left: .6rem;
+    padding-right: .6rem;
+  }
+
+  .main-container {
+    padding-left: .6rem;
+    padding-right: .6rem;
+  }
+
+  .tab {
+    min-width: 64px;
+  }
+
+  .ring-lg {
+    width: 128px;
+    height: 128px;
+  }
+
+  .ring-sm {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* History: keep KPIs readable on very small widths */
+@media (max-width: 380px) {
+
+  body {
+    font-size: 14px;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+
+  }
+
+  .ring-lg {
+    width: 128px;
+    height: 128px;
+  }
+
+  .ring-sm {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* Wide screens & foldables: keep content readable and centered */
+@media (min-width: 900px) {
+  .page-narrow {
+    max-width: 800px;
+  }
+
+  .program-card {
+    min-height: 50vh;
+  }
+
+  /* a bit less tall on very wide */
+}
+
+/* === Tracker Rings === */
+/* === Tracker Rings (ring-only fill) === */
+.rings-wrap {
+  display: grid;
+  justify-items: center;
+  gap: .5rem;
+  margin-top: .6rem;
+}
+
+/* Base ring container */
+.ring {
+  /* controls */
+  --pct: 0;
+  /* 0–100 */
+  --col: var(--success);
+  /* active arc color */
+  --track: rgba(255, 255, 255, .10);
+  /* background track */
+  --thickness: 12px;
+  /* ring width, overridden per size */
+
+  width: 120px;
+  height: 120px;
+  position: relative;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* Track ring */
+.ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--track) 0 360deg);
+  /* punch inner hole to make it a ring */
+  -webkit-mask: radial-gradient(closest-side, transparent calc(50% - var(--thickness)), #000 calc(50% - var(--thickness) + .5px));
+  mask: radial-gradient(closest-side, transparent calc(50% - var(--thickness)), #000 calc(50% - var(--thickness) + .5px));
+}
+
+/* Active arc */
+.ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--col) calc(var(--pct)*1%), transparent 0);
+  -webkit-mask: radial-gradient(closest-side, transparent calc(50% - var(--thickness)), #000 calc(50% - var(--thickness) + .5px));
+  mask: radial-gradient(closest-side, transparent calc(50% - var(--thickness)), #000 calc(50% - var(--thickness) + .5px));
+}
+
+/* Sizes + thickness */
+.ring-lg {
+  width: 140px;
+  height: 140px;
+  --thickness: -20px;
+}
+
+.ring-sm {
+  width: 72px;
+  height: 72px;
+  --thickness: -10px;
+}
+
+.ring-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.ring-subtext {
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.macro-rings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .9rem;
+  margin-top: .35rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.macro {
+  display: grid;
+  justify-items: center;
+  gap: .25rem;
+}
+
+.macro-label {
+  font-size: .92rem;
+  color: var(--muted);
+}
+
+/* Centers the food log after adding foods, numbers werent inline with the above template */
+.r-center {
+  text-align: center;
+}
+
+
+/* ehhh hides the random badge that displayed goal calories next to the date. It needs to exist for the ring to track calories for some reason so i just let it exist but hide it visually. */
+#goalKcal {
+  display: none;
+}
+
+
+/* Scales up the emojis inside the tracker rings */
+.emoji-cal {
+  font-size: 4rem;
+}
+
+.emoji-macro {
+  font-size: 2rem;
+}
+
+.r-del {
+  display: none;
+}
+
+.remove-set-btn{
+  font-size: 0.65rem;
+  padding: 0;
+  width: 80%;
+}
+
+/* base card already exists, but these ensure layout */
+.day-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 14px;
+  border: 1px solid var(--surface-border, #333);
+  padding: 0.85rem 1rem;
+}
+
+/* completed day = highlighted border + subtle glow */
+.day-card.complete {
+  border-color: var(--accent, #2b8cff);
+  box-shadow: 0 0 0 1px rgba(43, 140, 255, 0.6);
+}
+
+/* existing rest styling stays as-is; just make sure it differs */
+.day-card.rest-style {
+  opacity: 0.75;
+}
+
+/* left side */
+.day-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.day-name {
+  font-weight: 600;
+}
+
+/* right side text (Push/Pull/Legs/Rest) */
+.day-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.slot-label {
+  font-weight: 500;
+}
+
+/* draggable handle (only visible in edit mode via JS) */
+.drag-handle::before {
+  content: "⋮⋮";
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
+/* completion checkmark bubble */
+.status-icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--surface-border, #333);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+/* only show the check when the card is marked complete */
+.day-card.complete .status-icon::before {
+  content: "✓";
+}
+

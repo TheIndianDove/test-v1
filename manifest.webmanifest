@@ -1,0 +1,13 @@
+{
+  "name": "Atlas Gym App",
+  "short_name": "Atlas",
+  "start_url": "programs.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#2b8cff",
+  "icons": [
+    { "src": "icons/atlas-logo.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/atlas-logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

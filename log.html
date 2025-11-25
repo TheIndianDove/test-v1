@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Exercise Log – Atlas</title>
+  <meta name="theme-color" content="#2b8cff" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="functions.js" defer></script>
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="programs.html" class="brand">
+      <img src="icons/atlas-logo.png" alt="Atlas" width="32" height="32" />
+      <span class="brand-title">ATLAS</span>
+    </a>
+    <a href="settings.html" class="icon-btn" aria-label="Settings" data-page-link="settings">
+      <svg class="icon">
+        <use href="icons/icons.svg#settings" />
+      </svg>
+    </a>
+  </header>
+
+  <main class="main-container page-narrow" id="logRoot">
+    <h1>Exercise Log</h1>
+    <p class="subtle" id="programBadge">Program: —</p>
+
+    <div class="card">
+      <div class="log-controls-grid">
+        <label class="input">
+          <span class="input-label">Date</span>
+          <input type="date" id="logDate" />
+        </label>
+        <label class="input">
+          <span class="input-label">Workout</span>
+          <select id="planSelect"></select>
+        </label>
+        <div class="log-controls-actions">
+          <button id="loadPlanBtn" class="btn secondary">Load Plan</button>
+          <button id="addExerciseBtn" class="btn secondary">Add Exercise</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="restBanner" class="card my-06 hidden">
+      <strong>Rest day</strong> per your schedule. You can still log manually.
+    </div>
+
+    <section id="exerciseList"></section>
+
+    <div class="log-actions-row mt-06">
+      <button id="saveLogBtn" class="btn">Save</button>
+      <button id="clearLogBtn" class="btn ghost">Clear (unsaved)</button>
+      <span class="badge">Total Volume (<span class="unit-weight">kg</span>):&nbsp; <strong id="volumeTotal">0</strong></span>
+    </div>
+
+    <p id="logMessage" class="feedback" aria-live="polite"></p>
+  </main>
+
+  <footer class="app-footer">
+    <nav class="tabbar" aria-label="Primary">
+      <a href="programs.html" class="tab" data-page-link="programs"><svg class="icon">
+          <use href="icons/icons.svg#programs" />
+        </svg><span>Program</span></a>
+      <a href="schedule.html" class="tab" data-page-link="schedule"><svg class="icon">
+          <use href="icons/icons.svg#schedule" />
+        </svg><span>Schedule</span></a>
+      <a href="log.html" class="tab" data-page-link="log"><svg class="icon">
+          <use href="icons/icons.svg#log" />
+        </svg><span>Log</span></a>
+      <a href="history.html" class="tab" data-page-link="history"><svg class="icon">
+          <use href="icons/icons.svg#history" />
+        </svg><span>History</span></a>
+      <a href="tracker.html" class="tab" data-page-link="tracker"><svg class="icon">
+          <use href="icons/icons.svg#tracker" />
+        </svg><span>Tracker</span></a>
+      <a href="profile.html" class="tab" data-page-link="profile"><svg class="icon">
+          <use href="icons/icons.svg#profile" />
+        </svg><span>Profile</span></a>
+    </nav>
+  </footer>
+
+  <!-- Templates -->
+  <template id="exercise-template">
+    <article class="exercise-card card">
+      <div class="exercise-head-grid">
+        <label class="input">
+          <span class="input-label">Exercise</span>
+          <input class="exercise-name" type="text" placeholder="e.g., Bench Press" />
+        </label>
+        <div class="exercise-head-actions">
+          <button class="btn secondary add-set-btn">Add Set</button>
+          <button class="btn ghost remove-exercise-btn">Remove</button>
+        </div>
+      </div>
+
+      <div class="table-wrap mt-05">
+        <table class="table-compact">
+          <thead>
+            <tr>
+              <th class="w-6ch">Set</th>
+              <th class="w-40p">Weight (<span class="unit-weight">kg/lb</span>)</th>
+              <th class="w-30p">Reps</th>
+              <th class="w-10ch"></th>
+            </tr>
+          </thead>
+          <tbody class="set-list"></tbody>
+        </table>
+      </div>
+    </article>
+  </template>
+
+  <template id="set-row-template">
+    <tr class="set-row">
+      <td class="set-index">1</td>
+      <td><input type="number" class="set-weight" min="0" step="0.5" inputmode="decimal" /></td>
+      <td><input type="number" class="set-reps" min="0" step="1" inputmode="numeric" /></td>
+      <td><button class="btn ghost remove-set-btn">Remove</button></td>
+    </tr>
+  </template>
+</body>
+
+</html>

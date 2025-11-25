@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Profile – Atlas</title>
+  <meta name="theme-color" content="#2b8cff" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="functions.js" defer></script>
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="programs.html" class="brand">
+      <img src="icons/atlas-logo.png" alt="Atlas" width="32" height="32" />
+      <span class="brand-title">ATLAS</span>
+    </a>
+    <a href="settings.html" class="icon-btn" aria-label="Settings" data-page-link="settings">
+      <svg class="icon">
+        <use href="icons/icons.svg#settings" />
+      </svg>
+    </a>
+  </header>
+
+  <main class="main-container page-narrow">
+    <h1>Your Profile</h1>
+    <form id="profileForm" class="card">
+      <div class="profile-grid-2">
+        <label class="input"><span class="input-label">Name</span><input type="text" name="name"
+            placeholder="Your name" /></label>
+        <label class="input"><span class="input-label">Bodyweight (kg)</span><input type="number" name="bodyweight"
+            step="0.1" inputmode="decimal" /></label>
+        <label class="input"><span class="input-label">Height (cm)</span><input type="number" name="height" step="1"
+            inputmode="numeric" /></label>
+        <label class="input"><span class="input-label">Age</span><input type="number" name="age" step="1"
+            inputmode="numeric" /></label>
+        <label class="input"><span class="input-label">Gender</span>
+          <select name="gender">
+            <option value="">—</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <label class="input"><span class="input-label">Goal</span>
+          <select name="goal">
+            <option value="">—</option>
+            <option value="weight_loss">Weight loss</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="strength_gain">Strength gain</option>
+          </select>
+        </label>
+      </div>
+      <div class="mt-075"><button class="btn" type="submit">Save</button></div>
+      <p id="profileMsg" class="feedback" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <footer class="app-footer">
+    <nav class="tabbar" aria-label="Primary">
+      <a href="programs.html" class="tab" data-page-link="programs"><svg class="icon">
+          <use href="icons/icons.svg#programs" />
+        </svg><span>Program</span></a>
+      <a href="schedule.html" class="tab" data-page-link="schedule"><svg class="icon">
+          <use href="icons/icons.svg#schedule" />
+        </svg><span>Schedule</span></a>
+      <a href="log.html" class="tab" data-page-link="log"><svg class="icon">
+          <use href="icons/icons.svg#log" />
+        </svg><span>Log</span></a>
+      <a href="history.html" class="tab" data-page-link="history"><svg class="icon">
+          <use href="icons/icons.svg#history" />
+        </svg><span>History</span></a>
+      <a href="tracker.html" class="tab" data-page-link="tracker"><svg class="icon">
+          <use href="icons/icons.svg#tracker" />
+        </svg><span>Tracker</span></a>
+      <a href="profile.html" class="tab" data-page-link="profile"><svg class="icon">
+          <use href="icons/icons.svg#profile" />
+        </svg><span>Profile</span></a>
+    </nav>
+  </footer>
+</body>
+
+</html>

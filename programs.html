@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Programs – Atlas</title>
+  <meta name="theme-color" content="#2b8cff" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="functions.js" defer></script>
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="programs.html" class="brand">
+      <img src="icons/atlas-logo.png" alt="Atlas" width="32" height="32" />
+      <span class="brand-title">ATLAS</span>
+    </a>
+    <a href="settings.html" class="icon-btn" aria-label="Settings" data-page-link="settings">
+      <svg class="icon">
+        <use href="icons/icons.svg#settings" />
+      </svg>
+    </a>
+  </header>
+
+  <main class="main-container page-narrow" id="programsRoot">
+    <h1>Select Your Workout Program</h1>
+    <p class="subtle mb-06">★ Beginner • ★★ Intermediate • ★★★ Advanced</p>
+
+    <section id="programCarousel" class="carousel" aria-roledescription="carousel">
+      <div class="track">
+        <article class="program-card card" data-program-key="ppl">
+          <h2>Push • Pull • Legs (PPL)</h2>
+          <div class="stars" aria-label="Difficulty">★★</div>
+          <p>Balanced rotation for frequent practice of push, pull, and legs.</p>
+          <ul>
+            <li>Days/week: 4–6</li>
+            <li>Goal: Balanced hypertrophy</li>
+            <li>Time: 60–75 min</li>
+          </ul>
+          <button class="btn select-btn">Select Program</button>
+        </article>
+
+        <article class="program-card card" data-program-key="ul">
+          <h2>Upper / Lower</h2>
+          <div class="stars" aria-label="Difficulty">★–★★</div>
+          <p>Four sessions focusing on compounds and progressive overload.</p>
+          <ul>
+            <li>Days/week: 4</li>
+            <li>Goal: Strength & hypertrophy</li>
+            <li>Time: 60–70 min</li>
+          </ul>
+          <button class="btn select-btn">Select Program</button>
+        </article>
+
+        <article class="program-card card" data-program-key="fourDay">
+          <h2>4-Day Split</h2>
+          <div class="stars" aria-label="Difficulty">★★</div>
+          <p>Body-part split for focused volume and recovery.</p>
+          <ul>
+            <li>Days/week: 4</li>
+            <li>Goal: Focus by muscle group</li>
+            <li>Time: 60–75 min</li>
+          </ul>
+          <button class="btn select-btn">Select Program</button>
+        </article>
+      </div>
+    </section>
+    <div id="programDots" class="dots" aria-hidden="true"></div>
+  </main>
+
+  <footer class="app-footer">
+    <nav class="tabbar" aria-label="Primary">
+      <a href="programs.html" class="tab" data-page-link="programs">
+        <svg class="icon">
+          <use href="icons/icons.svg#programs" />
+        </svg><span>Program</span>
+      </a>
+      <a href="schedule.html" class="tab" data-page-link="schedule">
+        <svg class="icon">
+          <use href="icons/icons.svg#schedule" />
+        </svg><span>Schedule</span>
+      </a>
+      <a href="log.html" class="tab" data-page-link="log">
+        <svg class="icon">
+          <use href="icons/icons.svg#log" />
+        </svg><span>Log</span>
+      </a>
+      <a href="history.html" class="tab" data-page-link="history">
+        <svg class="icon">
+          <use href="icons/icons.svg#history" />
+        </svg><span>History</span>
+      </a>
+      <a href="tracker.html" class="tab" data-page-link="tracker">
+        <svg class="icon">
+          <use href="icons/icons.svg#tracker" />
+        </svg><span>Tracker</span>
+      </a>
+      <a href="profile.html" class="tab" data-page-link="profile">
+        <svg class="icon">
+          <use href="icons/icons.svg#profile" />
+        </svg><span>Profile</span>
+      </a>
+    </nav>
+  </footer>
+</body>
+
+</html>

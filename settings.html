@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Settings – Atlas</title>
+  <meta name="theme-color" content="#2b8cff" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="functions.js" defer></script>
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="programs.html" class="brand">
+      <img src="icons/atlas-logo.png" alt="Atlas" width="32" height="32" />
+      <span class="brand-title">ATLAS</span>
+    </a>
+    <a href="settings.html" class="icon-btn" aria-label="Settings" data-page-link="settings">
+      <svg class="icon">
+        <use href="icons/icons.svg#settings" />
+      </svg>
+    </a>
+  </header>
+
+  <main class="main-container page-narrow" id="settingsRoot">
+    <h1>Settings</h1>
+
+    <section class="card mb-10">
+      <h2 class="h4">General</h2>
+      <div class="settings-grid-3">
+        <label class="input">
+          <span class="input-label">Units</span>
+          <select id="unitsSelect">
+            <option value="kg">kg</option>
+            <option value="lb">lb</option>
+          </select>
+        </label>
+        <label class="input">
+          <span class="input-label">Theme</span>
+          <select id="themeSelect">
+            <option value="auto">Auto</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <label class="input">
+          <span class="input-label">Rest timer (seconds)</span>
+          <input type="number" id="timerInput" min="10" step="5" placeholder="90" />
+        </label>
+      </div>
+      <div class="settings-actions-row mt-075">
+        <button id="saveSettingsBtn" class="btn">Save</button>
+        <button id="resetSettingsBtn" class="btn ghost">Reset to defaults</button>
+      </div>
+    </section>
+
+    <section class="card mb-10">
+      <h2 class="h4">Data</h2>
+      <div class="settings-data-actions">
+        <button id="exportJsonBtn" class="btn">Export backup (JSON)</button>
+        <label class="btn secondary" for="importJsonInput">Import backup…</label>
+        <input id="importJsonInput" type="file" accept="application/json" class="hidden-input" />
+        <button id="clearDataBtn" class="btn ghost">Clear all data</button>
+      </div>
+      <p class="subtle mt-05">Export includes: profile, selected program, schedule, logs, and settings.</p>
+    </section>
+
+    <p id="settingsMsg" class="feedback" aria-live="polite"></p>
+  </main>
+
+  <footer class="app-footer">
+    <nav class="tabbar" aria-label="Primary">
+      <a href="programs.html" class="tab" data-page-link="programs"><svg class="icon">
+          <use href="icons/icons.svg#programs" />
+        </svg><span>Program</span></a>
+      <a href="schedule.html" class="tab" data-page-link="schedule"><svg class="icon">
+          <use href="icons/icons.svg#schedule" />
+        </svg><span>Schedule</span></a>
+      <a href="log.html" class="tab" data-page-link="log"><svg class="icon">
+          <use href="icons/icons.svg#log" />
+        </svg><span>Log</span></a>
+      <a href="history.html" class="tab" data-page-link="history"><svg class="icon">
+          <use href="icons/icons.svg#history" />
+        </svg><span>History</span></a>
+      <a href="tracker.html" class="tab" data-page-link="tracker"><svg class="icon">
+          <use href="icons/icons.svg#tracker" />
+        </svg><span>Tracker</span></a>
+      <a href="profile.html" class="tab" data-page-link="profile"><svg class="icon">
+          <use href="icons/icons.svg#profile" />
+        </svg><span>Profile</span></a>
+    </nav>
+  </footer>
+</body>
+
+</html>
