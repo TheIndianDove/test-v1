@@ -27,6 +27,10 @@ const store = {
 const deepClone = (x) => JSON.parse(JSON.stringify(x));
 const toISO = (d) => d.toLocaleDateString("en-CA");
 
+// Today in local time, YYYY-MM-DD (same format as toISO)
+const todayISO = () => toISO(new Date());
+
+
 /* ----------------------------- Theme / Settings --------------------------- */
 function getSettings() {
   return store.get(StorageKeys.settings, { units: "kg", theme: "auto", restTimerSec: 90 });
