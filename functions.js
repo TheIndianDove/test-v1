@@ -25,9 +25,6 @@ const store = {
 };
 
 const deepClone = (x) => JSON.parse(JSON.stringify(x));
-
-//Test only maybe remove?
-const todayISO = () => new Date().toISOString().slice(0, 10);
 const toISO = (d) => d.toLocaleDateString("en-CA");
 
 /* ----------------------------- Theme / Settings --------------------------- */
@@ -742,7 +739,7 @@ function initLog() {
   planSelect.innerHTML =
     '<option value="">(from schedule)</option>' +
     pattern.map((p) => `<option value="${p}">${p}</option>`).join("");
-  dateInput.value = todayISO();
+  dateInput.value = toISO();
 
   const PROGRAM_TEMPLATES = {
     ppl: {
@@ -1260,7 +1257,7 @@ function initTracker() {
   const datalist = root.querySelector("#foodDatalist");
 
   /* ---------- Helpers ---------- */
-  dateIn.value = todayISO();
+  dateIn.value = toISO();
   const key = (d) => `calorie_${d}`;
   const getDay = (d) => store.get(key(d), { items: [] });
   const saveDay = (d, x) => store.set(key(d), x);
