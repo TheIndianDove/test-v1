@@ -25,6 +25,9 @@ const store = {
 };
 
 const deepClone = (x) => JSON.parse(JSON.stringify(x));
+
+//Test only maybe remove?
+const todayISO = () => new Date().toISOString().slice(0, 10);
 const toISO = (d) => d.toLocaleDateString("en-CA");
 
 /* ----------------------------- Theme / Settings --------------------------- */
